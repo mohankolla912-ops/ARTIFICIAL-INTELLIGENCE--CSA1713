@@ -1,1 +1,24 @@
+from collections import deque
 
+A, B, goal = 4, 3, 2
+q = deque([(0, 0)])
+seen = {(0, 0)}
+
+while q:
+    x, y = q.popleft()
+
+    if x == goal or y == goal:
+        print("Goal reached:", x, y)
+        break
+
+    states = [
+        (A, y), (x, B),       # Fill
+        (0, y), (x, 0),       # Empty
+        (x-min(x, B-y), y+min(x, B-y)),  # A -> B
+        (x+min(y, A-x), y-min(y, A-x))   # B -> A
+    ]
+
+    for s in states:
+        if s not in seen:
+            seen.add(s)
+            q.append(s)
