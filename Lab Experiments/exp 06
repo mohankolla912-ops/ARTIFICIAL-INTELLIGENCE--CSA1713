@@ -1,0 +1,10 @@
+rooms = ["Dirty", "Dirty"]
+
+for i in range(len(rooms)):
+    print("Room", i + 1, ":", rooms[i])
+
+    if rooms[i] == "Dirty":
+        rooms[i] = "Clean"
+        print("Cleaning room", i + 1)
+
+print("Final status:", rooms)
