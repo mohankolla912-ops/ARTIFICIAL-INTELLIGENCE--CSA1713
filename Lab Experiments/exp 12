@@ -1,0 +1,37 @@
+board = [' '] * 9
+
+def display():
+    print(board[0:3])
+    print(board[3:6])
+    print(board[6:9])
+
+player = 'X'
+
+while True:
+    display()
+    pos = int(input(f"Player {player}, enter position (1-9): ")) - 1
+
+    if pos < 0 or pos > 8 or board[pos] != ' ':
+        print("Invalid position! Try again.")
+        continue
+
+    board[pos] = player
+
+    win = False
+    for a, b, c in [(0,1,2), (3,4,5), (6,7,8),
+                    (0,3,6), (1,4,7), (2,5,8),
+                    (0,4,8), (2,4,6)]:
+        if board[a] == board[b] == board[c] == player:
+            win = True
+
+    if win:
+        display()
+        print("Player", player, "wins!")
+        break
+
+    if ' ' not in board:
+        display()
+        print("Match Draw!")
+        break
+
+    player = 'O' if player == 'X' else 'X'
