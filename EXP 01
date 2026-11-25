@@ -1,0 +1,12 @@
+temp = float(input("Enter temperature: "))
+
+cold = max(0, min(1, (25 - temp) / 10))
+warm = max(0, 1 - abs(temp - 25) / 10)
+hot = max(0, min(1, (temp - 25) / 10))
+
+fan = (cold * 0 + warm * 50 + hot * 100) / (cold + warm + hot)
+
+print("Cold:", cold)
+print("Warm:", warm)
+print("Hot:", hot)
+print("Fan Speed:", fan, "%")
